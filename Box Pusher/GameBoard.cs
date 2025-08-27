@@ -9,8 +9,8 @@ namespace Project
     public class GameBoard
     {
         public int[,] Map { get; }
-        public int Rows => Map.GetLength(0);  // број на редови
-        public int Cols => Map.GetLength(1);  // број на колони
+        public int Rows => Map.GetLength(0);  
+        public int Cols => Map.GetLength(1);  
 
         public GameBoard(int[,] map)
         {
