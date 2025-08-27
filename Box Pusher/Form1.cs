@@ -12,9 +12,12 @@ namespace Project
 {
     public partial class Form1 : Form
     {
-        private void Form1_Load(object sender, EventArgs e)
+        public enum Direction
         {
-
+            Up,
+            Down,
+            Left,
+            Right
         }
 
         private Game game;
@@ -45,7 +48,7 @@ namespace Project
 
             this.ClientSize = new Size(formWidth, formHeight);
 
-            InitializeBoardVisual();   // <--- ДОДАДИ ОВА
+            InitializeBoardVisual();  
             UpdateInfoLabel();
             UpdateBoardVisual();
             this.Invalidate();
@@ -64,8 +67,8 @@ namespace Project
 
         private void InitializeBoardVisual()
         {
-            int rows = game.Board.Rows; // број на редови во таблата
-            int cols = game.Board.Cols; // број на колони
+            int rows = game.Board.Rows;
+            int cols = game.Board.Cols; 
 
             pictureBoxes = new PictureBox[rows, cols];
 
@@ -95,27 +98,37 @@ namespace Project
                     PictureBox pb = pictureBoxes[y, x];
                     if (game.Board.IsWall(x, y))
                     {
-                        pb.Image = Properties.Resources.wall_jpg; // слика за ѕид
+                        pb.Image = Properties.Resources.wall_jpg;
                     }
                     else if (game.Player.PlayerPosition == new Point(x, y))
                     {
-                        pb.Image = Properties.Resources.soko_down_jpg;  // слика за човече
+                        switch (game.Player.CurrentDirection)
+                        {
+                            case Direction.Up:
+                                pb.Image = Properties.Resources.soko_up;
+                                break;
+                            case Direction.Down:
+                                pb.Image = Properties.Resources.soko_down_jpg;
+                                break;
+                            case Direction.Left:
+                                pb.Image = Properties.Resources.soko_left;
+                                break;
+                            case Direction.Right:
+                                pb.Image = Properties.Resources.soko_right;
+                                break;
+                        } 
                     }
                     else if (game.Box.BoxPosition == new Point(x, y))
                     {
-                        pb.Image = Properties.Resources.package_jpg;  // слика за кутија
+                        pb.Image = Properties.Resources.package_jpg;  
                     }
-                    //else if (game.Goal.Position == new Point(x, y) && game.Box.Position == new Point(x, y))
-                    //{
-                    //    pb.Image = Properties.Resources.package_goal; // треба да додадеш слика
-                    //}
                     else if (game.Goal.GoalPosition == new Point(x, y))
                     {
-                        pb.Image = Properties.Resources.package_goal_jpg;  // слика за цел
+                        pb.Image = Properties.Resources.package_goal_jpg;  
                     }
                     else
                     {
-                        pb.Image = Properties.Resources.floor_jpg;  // празно поле
+                        pb.Image = Properties.Resources.floor_jpg;  
                     }
                 }
             }
@@ -126,10 +139,22 @@ namespace Project
         {
             switch (e.KeyCode)
             {
-                case Keys.Up: game.MovePlayer(0, -1); break;
-                case Keys.Down: game.MovePlayer(0, 1); break;
-                case Keys.Left: game.MovePlayer(-1, 0); break;
-                case Keys.Right: game.MovePlayer(1, 0); break;
+                case Keys.Up:
+                    game.MovePlayer(0, -1);
+                    game.Player.CurrentDirection = Direction.Up;
+                    break;
+                case Keys.Down:
+                    game.MovePlayer(0, 1);
+                    game.Player.CurrentDirection = Direction.Down;
+                    break;
+                case Keys.Left:
+                    game.MovePlayer(-1, 0);
+                    game.Player.CurrentDirection = Direction.Left;
+                    break;
+                case Keys.Right:
+                    game.MovePlayer(1, 0);
+                    game.Player.CurrentDirection = Direction.Right;
+                    break;
             }
             UpdateBoardVisual();
             this.Invalidate();
@@ -156,12 +181,9 @@ namespace Project
                 }
             }
 
-            // Кутија
             g.FillRectangle(Brushes.Brown, new Rectangle(game.Box.BoxPosition.X * CellSize, game.Box.BoxPosition.Y * CellSize, CellSize, CellSize));
 
-            // Играч
             g.FillEllipse(Brushes.Blue, new Rectangle(game.Player.PlayerPosition.X * CellSize + 10, game.Player.PlayerPosition.Y * CellSize + 10, 30, 30));
-
         }
     }
 }
