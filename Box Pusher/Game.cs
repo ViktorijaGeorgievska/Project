@@ -25,12 +25,13 @@ namespace Project
             LoadLevel(0);
         }
 
-         private void LoadLevels()
-         {
-             Levels = new List<Level>();
+        private void LoadLevels()
+        {
+            Levels = new List<Level>();
 
-             Levels.Add(new Level(
-                 new int[,] {
+            // Ниво 1
+            Levels.Add(new Level(
+                new int[,] {
              {1,1,1,1,1,1,1,1,1,1},
              {1,0,0,0,1,0,0,0,2,1},
              {1,0,1,0,1,0,1,0,0,1},
@@ -41,14 +42,15 @@ namespace Project
              {1,0,0,0,1,0,0,1,0,1},
              {1,3,0,0,0,0,0,0,0,1},
              {1,1,1,1,1,1,1,1,1,1},
-                 },
-                 new Point(1, 1),  // Player start
-                 new Point(5, 7),  // Box start
-                 new Point(1, 8)   // Goal
-             ));
-        
-             Levels.Add(new Level(
-                 new int[,] {
+                },
+                new Point(1, 1),  // Почетна позиција на играчот
+                new Point(5, 7),  // Почетна позиција на кутијата
+                new Point(1, 8)   // Цел
+            ));
+
+            // Ниво 2
+            Levels.Add(new Level(
+                new int[,] {
              {1,1,1,1,1,1,1,1,1,1},
              {1,0,0,0,0,0,0,0,0,1},
              {1,0,1,1,1,1,1,0,0,1},
@@ -57,16 +59,17 @@ namespace Project
              {1,0,0,0,1,0,1,1,0,1},
              {1,0,1,0,0,0,0,1,0,1},
              {1,0,1,0,1,0,0,0,0,1},
-             {1,3,0,0,0,0,0,0,0,1}, 
+             {1,3,0,0,0,0,0,0,0,1},
              {1,1,1,1,1,1,1,1,1,1},
-                 },
-                 new Point(7, 2),  // Player start
-                 new Point(5, 4),  // Box start
-                 new Point(3, 7)   // Goal
-             ));
-        
-             Levels.Add(new Level(
-                 new int[,] {
+                },
+                new Point(7, 2),  // Почетна позиција на играчот
+                new Point(5, 4),  // Почетна позиција на кутијата
+                new Point(3, 7)   // Цел
+            ));
+
+            // Ниво 3 
+            Levels.Add(new Level(
+                new int[,] {
              {1,1,1,1,1,1,1,1,1,1},
              {1,2,0,1,0,0,0,0,0,1},
              {1,0,0,1,0,1,1,1,0,1},
@@ -77,17 +80,17 @@ namespace Project
              {1,1,1,1,1,1,0,0,0,1},
              {1,0,0,0,0,0,0,1,0,1},
              {1,1,1,1,1,1,1,1,1,1},
-                 },
-             new Point(1, 1),  // Player start
-             new Point(8, 2),  // Box start (истата како 2 во мапата)
-             new Point(8, 6)   // Goal (позиција на 3 во мапата)
-             ));
+                },
+            new Point(1, 1),  // Почетна позиција на играчот
+            new Point(8, 2),  // Почетна позиција на кутијата
+            new Point(8, 6)   // Цел
+            ));
         }
         private void LoadLevel(int index)
         {
             if (index >= Levels.Count)
             {
-                MessageBox.Show("🎉 Честитки! Ги заврши сите нивоа!");
+                MessageBox.Show("🎉 Честитки! Успешно ги заврши сите нивоа!");
                 Application.Exit();
                 return;
             }
@@ -125,7 +128,6 @@ namespace Project
 
             StepCount++;
 
-            // Проверка за успешен крај - кутијата треба да е ТОЧНО на целното поле
             if (Box.BoxPosition == Goal.GoalPosition)
             {
                 MessageBox.Show($"🎉 Успешно ја стави кутијата на целта! Чекори: {StepCount}");
@@ -134,7 +136,6 @@ namespace Project
                 return;
             }
 
-            // Ако кутијата не е на целта, проверуваме дали е заглавена
             if (IsBoxStuck())
             {
                 MessageBox.Show($"❌ Кутијата е заглавена, играта завршува неуспешно! Чекори: {StepCount}");
@@ -142,47 +143,16 @@ namespace Project
             }
         }
 
-        //private bool IsBoxStuck()
-        //{
-        //    int x = Box.Position.X;
-        //    int y = Box.Position.Y;
-
-        //    // Проверуваме 4 страни околу кутијата
-        //    bool wallLeft = !Board.IsInside(x - 1, y) || Board.IsWall(x - 1, y);
-        //    bool wallRight = !Board.IsInside(x + 1, y) || Board.IsWall(x + 1, y);
-        //    bool wallUp = !Board.IsInside(x, y - 1) || Board.IsWall(x, y - 1);
-        //    bool wallDown = !Board.IsInside(x, y + 1) || Board.IsWall(x, y + 1);
-
-        //    // Ако има ѕид/пречка лево и горе (или било кои две спротивни страни)
-        //    bool stuckHorizontally = wallLeft && wallRight;
-        //    bool stuckVertically = wallUp && wallDown;
-
-        //    // Или ѕид лево и горе, или лево и долу, или десно и горе, или десно и долу:
-        //    bool stuckInCorner =
-        //        (wallLeft && wallUp) ||
-        //        (wallLeft && wallDown) ||
-        //        (wallRight && wallUp) ||
-        //        (wallRight && wallDown);
-
-        //    // Ако кутијата е заглавена во корнер или помеѓу две спротивни страни
-        //    if (stuckHorizontally || stuckVertically || stuckInCorner)
-        //        return true;
-
-        //    return false;
-        //}
-
         private bool IsBoxStuck()
         {
             int x = Box.BoxPosition.X;
             int y = Box.BoxPosition.Y;
 
-            // Проверуваме дали има ѕид од две соседни страни (агол)
             bool wallLeft = !Board.IsInside(x - 1, y) || Board.IsWall(x - 1, y);
             bool wallRight = !Board.IsInside(x + 1, y) || Board.IsWall(x + 1, y);
             bool wallUp = !Board.IsInside(x, y - 1) || Board.IsWall(x, y - 1);
             bool wallDown = !Board.IsInside(x, y + 1) || Board.IsWall(x, y + 1);
 
-            // Вистински ќошеви (перпендикуларно заглавување)
             bool topLeftCorner = wallUp && wallLeft;
             bool topRightCorner = wallUp && wallRight;
             bool bottomLeftCorner = wallDown && wallLeft;
