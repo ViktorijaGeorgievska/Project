@@ -27,10 +27,9 @@ namespace Project
 
          private void LoadLevels()
          {
-             levels = new List<Level>();
+             Levels = new List<Level>();
 
-             // Ниво 1 – Поправена мапа
-             levels.Add(new Level(
+             Levels.Add(new Level(
                  new int[,] {
              {1,1,1,1,1,1,1,1,1,1},
              {1,0,0,0,1,0,0,0,2,1},
@@ -48,8 +47,7 @@ namespace Project
                  new Point(1, 8)   // Goal
              ));
         
-             // Ниво 2 – Поправена мапа со повеќе слободен простор околу кутијата и премините
-             levels.Add(new Level(
+             Levels.Add(new Level(
                  new int[,] {
              {1,1,1,1,1,1,1,1,1,1},
              {1,0,0,0,0,0,0,0,0,1},
@@ -59,7 +57,7 @@ namespace Project
              {1,0,0,0,1,0,1,1,0,1},
              {1,0,1,0,0,0,0,1,0,1},
              {1,0,1,0,1,0,0,0,0,1},
-             {1,3,0,0,0,0,0,0,0,1}, // повеќе простор покрај целта
+             {1,3,0,0,0,0,0,0,0,1}, 
              {1,1,1,1,1,1,1,1,1,1},
                  },
                  new Point(7, 2),  // Player start
@@ -67,8 +65,7 @@ namespace Project
                  new Point(3, 7)   // Goal
              ));
         
-             // Ниво 3 – Поправена мапа со повеќе слободен простор за туркање и движење
-             levels.Add(new Level(
+             Levels.Add(new Level(
                  new int[,] {
              {1,1,1,1,1,1,1,1,1,1},
              {1,2,0,1,0,0,0,0,0,1},
@@ -193,7 +190,5 @@ namespace Project
 
             return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
         }
-
     }
 }
-
