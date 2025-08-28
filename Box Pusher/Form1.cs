@@ -1,4 +1,5 @@
-﻿using System;
+using BoxPusher;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,21 +41,19 @@ namespace Project
             lblInfo.AutoSize = true;
             lblInfo.Top = tileSize * game.Board.Rows + 10;
             lblInfo.Left = 10;
-            lblInfo.Text = $"Ниво: {game.CurrentLevel + 1}  Чекори: {game.StepCount}";
             this.Controls.Add(lblInfo);
 
-            int formWidth = game.Board.Cols * tileSize + 20; // +16 за граници
+            int formWidth = game.Board.Cols * tileSize + 20;  // +16 за граници
             int formHeight = game.Board.Rows * tileSize + 70; // +60 за Label и padding
 
             this.ClientSize = new Size(formWidth, formHeight);
 
-            InitializeBoardVisual();  
+            InitializeBoardVisual();
             UpdateInfoLabel();
             UpdateBoardVisual();
             this.Invalidate();
 
             this.KeyDown += Form1_KeyDown;
-            this.Paint += Form1_Paint;
         }
 
         private void UpdateInfoLabel()
@@ -63,12 +62,12 @@ namespace Project
         }
 
         private PictureBox[,] pictureBoxes;
-        private int tileSize = 50;  // големина на секое поле (px)
+        private int tileSize = 50; 
 
         private void InitializeBoardVisual()
         {
             int rows = game.Board.Rows;
-            int cols = game.Board.Cols; 
+            int cols = game.Board.Cols;
 
             pictureBoxes = new PictureBox[rows, cols];
 
@@ -98,41 +97,41 @@ namespace Project
                     PictureBox pb = pictureBoxes[y, x];
                     if (game.Board.IsWall(x, y))
                     {
-                        pb.Image = Properties.Resources.wall_jpg;
+                        pb.Image = WindowsFormsApp1.Properties.Resources.wall;
                     }
                     else if (game.Player.PlayerPosition == new Point(x, y))
                     {
                         switch (game.Player.CurrentDirection)
                         {
                             case Direction.Up:
-                                pb.Image = Properties.Resources.soko_up;
+                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_up;
                                 break;
                             case Direction.Down:
-                                pb.Image = Properties.Resources.soko_down_jpg;
+                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_down;
                                 break;
                             case Direction.Left:
-                                pb.Image = Properties.Resources.soko_left;
+                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_left;
                                 break;
                             case Direction.Right:
-                                pb.Image = Properties.Resources.soko_right;
+                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_right;
                                 break;
-                        } 
+                        }
                     }
                     else if (game.Box.BoxPosition == new Point(x, y))
                     {
-                        pb.Image = Properties.Resources.package_jpg;  
+                        pb.Image = WindowsFormsApp1.Properties.Resources.package;
                     }
                     else if (game.Goal.GoalPosition == new Point(x, y))
                     {
-                        pb.Image = Properties.Resources.package_goal_jpg;  
+                        pb.Image = WindowsFormsApp1.Properties.Resources.package_goal;
                     }
                     else
                     {
-                        pb.Image = Properties.Resources.floor_jpg;  
+                        pb.Image = WindowsFormsApp1.Properties.Resources.floor;
                     }
                 }
             }
-            lblInfo.Text = $"Ниво: {game.CurrentLevel + 1}  Чекори: {game.StepCount}";
+            UpdateInfoLabel();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -158,32 +157,6 @@ namespace Project
             }
             UpdateBoardVisual();
             this.Invalidate();
-        }
-
-        private void Form1_Paint(object sender, PaintEventArgs e)
-        {
-            var g = e.Graphics;
-
-            for (int y = 0; y < game.Board.Map.GetLength(0); y++)
-            {
-                for (int x = 0; x < game.Board.Map.GetLength(1); x++)
-                {
-                    Rectangle cell = new Rectangle(x * CellSize, y * CellSize, CellSize, CellSize);
-
-                    if (game.Board.Map[y, x] == 1)
-                        g.FillRectangle(Brushes.Gray, cell);
-                    else if (game.Board.Map[y, x] == 2)
-                        g.FillRectangle(Brushes.Yellow, cell);
-                    else
-                        g.FillRectangle(Brushes.White, cell);
-
-                    g.DrawRectangle(Pens.Black, cell);
-                }
-            }
-
-            g.FillRectangle(Brushes.Brown, new Rectangle(game.Box.BoxPosition.X * CellSize, game.Box.BoxPosition.Y * CellSize, CellSize, CellSize));
-
-            g.FillEllipse(Brushes.Blue, new Rectangle(game.Player.PlayerPosition.X * CellSize + 10, game.Player.PlayerPosition.Y * CellSize + 10, 30, 30));
         }
     }
 }
