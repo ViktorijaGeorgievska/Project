@@ -1,4 +1,6 @@
-﻿using System;
+
+using BoxPusher;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -62,9 +64,9 @@ namespace Project
              {1,3,0,0,0,0,0,0,0,1},
              {1,1,1,1,1,1,1,1,1,1},
                 },
-                new Point(7, 2),  // Почетна позиција на играчот
-                new Point(5, 4),  // Почетна позиција на кутијата
-                new Point(3, 7)   // Цел
+                new Point(7, 2),
+                new Point(5, 4),
+                new Point(3, 7)
             ));
 
             // Ниво 3 
@@ -81,9 +83,9 @@ namespace Project
              {1,0,0,0,0,0,0,1,0,1},
              {1,1,1,1,1,1,1,1,1,1},
                 },
-            new Point(1, 1),  // Почетна позиција на играчот
-            new Point(8, 2),  // Почетна позиција на кутијата
-            new Point(8, 6)   // Цел
+                new Point(1, 1),  // Почетна позиција на играчот
+                new Point(8, 2),  // Почетна позиција на кутијата
+                new Point(8, 6)   // Цел
             ));
         }
         private void LoadLevel(int index)
@@ -105,7 +107,7 @@ namespace Project
             Goal = new Goal(level.Goal.X, level.Goal.Y);
         }
 
-        public void MovePlayer(int dx, int dy)
+        public async void MovePlayer(int dx, int dy)
         {
             int nextX = Player.PlayerPosition.X + dx;
             int nextY = Player.PlayerPosition.Y + dy;
@@ -130,16 +132,22 @@ namespace Project
 
             if (Box.BoxPosition == Goal.GoalPosition)
             {
-                MessageBox.Show($"🎉 Успешно ја стави кутијата на целта! Чекори: {StepCount}");
-                CurrentLevel++;
-                LoadLevel(CurrentLevel);
-                return;
+                await Task.Delay(100);
+                if (MessageBox.Show($"🎉 Успешно ја стави кутијата на целта! Чекори: {StepCount}", "Ново ниво", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    CurrentLevel++;
+                    LoadLevel(CurrentLevel);
+                    return;
+                }
             }
 
             if (IsBoxStuck())
             {
-                MessageBox.Show($"❌ Кутијата е заглавена, играта завршува неуспешно! Чекори: {StepCount}");
-                LoadLevel(CurrentLevel);  // Рестартирај го сегашното ниво
+                await Task.Delay(100);
+                if (MessageBox.Show($"❌ Кутијата е заглавена! Чекори: {StepCount}", "Game Over", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    LoadLevel(CurrentLevel);
+                }
             }
         }
 
