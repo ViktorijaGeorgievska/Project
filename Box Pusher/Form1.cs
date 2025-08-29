@@ -189,6 +189,7 @@ namespace Project
             }
             else
             {
+                this.ActiveControl = null;
                 this.Focus();
             }
         }
