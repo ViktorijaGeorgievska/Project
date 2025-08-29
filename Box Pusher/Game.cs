@@ -164,5 +164,4 @@ namespace Project
             return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
         }
     }
-
 }
