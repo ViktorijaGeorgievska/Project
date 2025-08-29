@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project
@@ -22,27 +16,49 @@ namespace Project
 
         private Game game;
         private Label lblInfo;
+        private PictureBox[,] pictureBoxes;
+        private int tileSize = 50;
 
         public Form1()
         {
             InitializeComponent();
 
             this.Text = "Box Pusher";
+            this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.Width = 400;
             this.Height = 300;
-            this.DoubleBuffered = true;
-
+            
             game = new Game();
 
             lblInfo = new Label();
             lblInfo.Font = new Font("Arial", 12, FontStyle.Bold);
             lblInfo.AutoSize = true;
             lblInfo.Top = tileSize * game.Board.Rows + 10;
-            lblInfo.Left = 10;
+            lblInfo.Left = 20;
             this.Controls.Add(lblInfo);
 
-            int formWidth = game.Board.Cols * tileSize + 20;  
-            int formHeight = game.Board.Rows * tileSize + 70; 
+            Panel bottomPanel = new Panel();
+            bottomPanel.Width = this.ClientSize.Width;
+            bottomPanel.Height = 40;
+            bottomPanel.Top = tileSize * game.Board.Rows;
+            bottomPanel.Left = 370;
+            bottomPanel.BackColor = Color.Transparent;
+            this.Controls.Add(bottomPanel);
+
+            Button btnMenu = new Button();
+            btnMenu.Text = "Мени";
+            btnMenu.Font = new Font("Arial", 10, FontStyle.Bold);
+            btnMenu.Width = 100;
+            btnMenu.Height = 30;
+            btnMenu.Left = 10;
+            btnMenu.Top = 5;
+            btnMenu.TabStop = false;
+            btnMenu.Click += BtnMenu_Click;
+            bottomPanel.Controls.Add(btnMenu);
+
+            int formWidth = game.Board.Cols * tileSize;
+            int formHeight = game.Board.Rows * tileSize + 50;
             this.ClientSize = new Size(formWidth, formHeight);
 
             InitializeBoardVisual();
@@ -56,9 +72,6 @@ namespace Project
         {
             lblInfo.Text = $"Ниво: {game.CurrentLevel + 1}  Чекори: {game.StepCount}";
         }
-
-        private PictureBox[,] pictureBoxes;
-        private int tileSize = 50;
 
         private void InitializeBoardVisual()
         {
@@ -84,6 +97,7 @@ namespace Project
                 }
             }
         }
+
         private void UpdateBoardVisual()
         {
             for (int y = 0; y < game.Board.Rows; y++)
@@ -91,24 +105,27 @@ namespace Project
                 for (int x = 0; x < game.Board.Cols; x++)
                 {
                     PictureBox pb = pictureBoxes[y, x];
+
                     if (game.Board.IsWall(x, y))
-                    {
                         pb.Image = Properties.Resources.wall;
-                    }
-                    else if (game.Player.PlayerPosition == new Point(x, y))
+                    else if (game.Player.PlayerPosition.X == x && game.Player.PlayerPosition.Y == y)
                     {
                         switch (game.Player.CurrentDirection)
                         {
-                            case Direction.Up:
+                            case
+                            Direction.Up:
                                 pb.Image = Properties.Resources.player_up;
                                 break;
-                            case Direction.Down:
+                            case
+                            Direction.Down:
                                 pb.Image = Properties.Resources.player_down;
                                 break;
-                            case Direction.Left:
+                            case
+                            Direction.Left:
                                 pb.Image = Properties.Resources.player_left;
                                 break;
-                            case Direction.Right:
+                            case
+                            Direction.Right:
                                 pb.Image = Properties.Resources.player_right;
                                 break;
                         }
@@ -153,6 +170,27 @@ namespace Project
             }
             UpdateBoardVisual();
             this.Invalidate();
+        }
+
+        private void BtnMenu_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Дали сакаш да се вратиш во менито?\nТековната игра нема да се зачува.",
+                "",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                StartForm startForm = new StartForm();
+                startForm.StartPosition = FormStartPosition.CenterScreen;
+                startForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                this.Focus();
+            }
         }
     }
 }
