@@ -22,7 +22,14 @@ private bool IsBoxStuck()
 
     return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
 }
+4.
+<img width="313" height="256" alt="Мени" src="https://github.com/user-attachments/assets/2ed62d2c-0897-42fa-8887-6854093fa7b6" /> 
+<img width="504" height="342" alt="Инструкции" src="https://github.com/user-attachments/assets/153f9b07-c91b-4ea4-bdf4-c43c015027e1" />  <img width="620" height="718" alt="Ниво 1" src="https://github.com/user-attachments/assets/8bca2dd7-3c3d-4474-8e98-b5bb9ba81ee2" /> <img width="623" height="720" alt="Ниво 2" src="https://github.com/user-attachments/assets/84e22bfa-25fe-4333-a780-862e4e2b1bc5" /> 
+<img width="619" height="721" alt="Ниво 3" src="https://github.com/user-attachments/assets/16874374-27d7-4ea7-88f0-2c2df4fcc7d2" /> 
+<img width="382" height="158" alt="Успешно завршување на нивото" src="https://github.com/user-attachments/assets/fc9e8b16-5761-41e2-80c7-d359e5b15a40" /> 
+<img width="282" height="162" alt="Неуспешно завршување на нивото" src="https://github.com/user-attachments/assets/82c76986-8b67-4ad5-a20c-8b34bcf4f78c" /> 
+<img width="360" height="181" alt="Мени додека си во игра" src="https://github.com/user-attachments/assets/126499ee-0865-4eb9-a412-d0fd3739ef7d" />
 
-4. <img width="313" height="256" alt="Мени" src="https://github.com/user-attachments/assets/2ed62d2c-0897-42fa-8887-6854093fa7b6" /> 
-<img width="504" height="342" alt="Инструкции" src="https://github.com/user-attachments/assets/153f9b07-c91b-4ea4-bdf4-c43c015027e1" />  <img width="620" height="718" alt="Ниво 1" src="https://github.com/user-attachments/assets/8bca2dd7-3c3d-4474-8e98-b5bb9ba81ee2" /> 
+Играта се игра со помош на стрелките на тастатурата секоја стрелка е соодветна со нејзиниот правец и човечето не може да се движи дијагонало. Целта на играта е кутијата да се постави на целната позиција која е однапред дефинирана. По успешно или неуспешно завршување на нивото се притиска Enter. Проблем кој може да настане е тоа што кутијата може да ја заглавите во агол ако погрешно го придвижувате човечето и со тоа ќе треба од почеток да го играте истото ниво. Совет за полесно завршување на нивото е однапред неколку чекори да знаете каде ќе се придвижите. На почеток има стартно мени во кои имате опција за инструкции кои се препорачуваат да ги погледнете пред да почнете да ја играте играта, во текот на играта имате исто така опција да се вратите на стартното мени доколку сакате, но вашата моментална состојба во играта нема да биде зачувана и исто така во текот на играта се прикажува тековното ниво и бројот на чекори кои ги имате направено до даден момент при играњето. 
 
+5. За изработка на овој проект беше користена генеративна вештачка интелигенција, конкретно моделот ChatGPT. Го користевме пред да започнеме со правење на проектот со цел да ни го долови концептот и структурата на играта Box Pusher бидејќи првпат се среќаваме со нешто вакво. Во текот на развојот на самиот проект исто така беше користена вештачка интелигенција, која ни помагаше за објаснување и дооформување на дел од функциите потребни за проектот.
