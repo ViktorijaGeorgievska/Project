@@ -1,5 +1,4 @@
-using BoxPusher;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +21,6 @@ namespace Project
         }
 
         private Game game;
-        private const int CellSize = 50;
         private Label lblInfo;
 
         public Form1()
@@ -43,8 +41,8 @@ namespace Project
             lblInfo.Left = 10;
             this.Controls.Add(lblInfo);
 
-            int formWidth = game.Board.Cols * tileSize + 20;  // +16 за граници
-            int formHeight = game.Board.Rows * tileSize + 70; // +60 за Label и padding
+            int formWidth = game.Board.Cols * tileSize + 20;  
+            int formHeight = game.Board.Rows * tileSize + 70; 
 
             this.ClientSize = new Size(formWidth, formHeight);
 
@@ -62,7 +60,7 @@ namespace Project
         }
 
         private PictureBox[,] pictureBoxes;
-        private int tileSize = 50; 
+        private int tileSize = 50;
 
         private void InitializeBoardVisual()
         {
@@ -97,37 +95,37 @@ namespace Project
                     PictureBox pb = pictureBoxes[y, x];
                     if (game.Board.IsWall(x, y))
                     {
-                        pb.Image = WindowsFormsApp1.Properties.Resources.wall;
+                        pb.Image = Properties.Resources.wall;
                     }
                     else if (game.Player.PlayerPosition == new Point(x, y))
                     {
                         switch (game.Player.CurrentDirection)
                         {
                             case Direction.Up:
-                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_up;
+                                pb.Image = Properties.Resources.player_up;
                                 break;
                             case Direction.Down:
-                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_down;
+                                pb.Image = Properties.Resources.player_down;
                                 break;
                             case Direction.Left:
-                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_left;
+                                pb.Image = Properties.Resources.player_left;
                                 break;
                             case Direction.Right:
-                                pb.Image = WindowsFormsApp1.Properties.Resources.soko_right;
+                                pb.Image = Properties.Resources.player_right;
                                 break;
                         }
                     }
                     else if (game.Box.BoxPosition == new Point(x, y))
                     {
-                        pb.Image = WindowsFormsApp1.Properties.Resources.package;
+                        pb.Image = Properties.Resources.box;
                     }
                     else if (game.Goal.GoalPosition == new Point(x, y))
                     {
-                        pb.Image = WindowsFormsApp1.Properties.Resources.package_goal;
+                        pb.Image = Properties.Resources.box_goal;
                     }
                     else
                     {
-                        pb.Image = WindowsFormsApp1.Properties.Resources.floor;
+                        pb.Image = Properties.Resources.floor;
                     }
                 }
             }
