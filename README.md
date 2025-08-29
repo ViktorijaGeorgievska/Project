@@ -23,4 +23,6 @@ private bool IsBoxStuck()
     return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
 }
 
-4. <img width="313" height="256" alt="Мени" src="https://github.com/user-attachments/assets/2ed62d2c-0897-42fa-8887-6854093fa7b6" />
+4. <img width="313" height="256" alt="Мени" src="https://github.com/user-attachments/assets/2ed62d2c-0897-42fa-8887-6854093fa7b6" /> 
+<img width="504" height="342" alt="Инструкции" src="https://github.com/user-attachments/assets/153f9b07-c91b-4ea4-bdf4-c43c015027e1" />  <img width="620" height="718" alt="Ниво 1" src="https://github.com/user-attachments/assets/8bca2dd7-3c3d-4474-8e98-b5bb9ba81ee2" /> 
+
