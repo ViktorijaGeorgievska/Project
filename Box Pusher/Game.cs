@@ -78,7 +78,7 @@ namespace Project
              {1,0,1,0,0,1,0,1,0,1},
              {1,0,0,0,0,0,0,1,3,1},
              {1,1,1,1,0,0,0,1,1,1},
-             {1,0,0,0,0,0,0,1,1,1},
+             {1,0,0,0,0,0,0,0,0,1},
              {1,1,1,1,1,1,1,1,1,1},
                 },
                 new Point(1, 1),
@@ -164,4 +164,5 @@ namespace Project
             return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
         }
     }
+
 }
