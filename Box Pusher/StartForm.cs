@@ -22,12 +22,9 @@ namespace Project
         {
             Form1 gameForm = new Form1();
             gameForm.StartPosition = FormStartPosition.CenterScreen;
-
-            // кога ќе се затвори играта, апликацијата целосно ќе заврши
             gameForm.FormClosed += (s, args) => Application.Exit();
-
             gameForm.Show();
-            this.Hide();       // скриј ја старт формата
+            this.Hide();       
         }
 
         private void btnInstructions_Click(object sender, EventArgs e)
