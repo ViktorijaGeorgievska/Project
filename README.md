@@ -5,22 +5,22 @@
 
 3. Функцијата IsBoxStuck() која се наоѓа во класата Game проверува дали кутијата е загалвена во некој агол. Оваа функција ги зема x,y координатите на кутијата и проверува што се наоѓа околу кутијата со помош на булеан променливите wallLeft (проверува дали од левата страна има ѕид или кутијата е надвор од мапата) и соодветно и за останатите променливи wallRight, wallUp и wallDown. Со помош пак на булеан променливите topLeftCorner, topRightCorner, bottomLeftCorner и bottomRightCorner се проверува дали кутијата е заглавена во некој од аглите на мапата. И на крај ако било кој од овие услови од булеан променливите е исполнет се враќа true и тоа значи дека кутијата е заглавена во спортивно кутијата може да се движи.
 private bool IsBoxStuck()
-{
-    int x = Box.BoxPosition.X;
-    int y = Box.BoxPosition.Y;
+        {
+            int x = Box.BoxPosition.X;
+            int y = Box.BoxPosition.Y;
 
-    bool wallLeft = !Board.IsInside(x - 1, y) || Board.IsWall(x - 1, y);
-    bool wallRight = !Board.IsInside(x + 1, y) || Board.IsWall(x + 1, y);
-    bool wallUp = !Board.IsInside(x, y - 1) || Board.IsWall(x, y - 1);
-    bool wallDown = !Board.IsInside(x, y + 1) || Board.IsWall(x, y + 1);
+            bool wallLeft = !Board.IsInside(x - 1, y) || Board.IsWall(x - 1, y);
+            bool wallRight = !Board.IsInside(x + 1, y) || Board.IsWall(x + 1, y);
+            bool wallUp = !Board.IsInside(x, y - 1) || Board.IsWall(x, y - 1);
+            bool wallDown = !Board.IsInside(x, y + 1) || Board.IsWall(x, y + 1);
 
-    bool topLeftCorner = wallUp && wallLeft;
-    bool topRightCorner = wallUp && wallRight;
-    bool bottomLeftCorner = wallDown && wallLeft;
-    bool bottomRightCorner = wallDown && wallRight;
+            bool topLeftCorner = wallUp && wallLeft;
+            bool topRightCorner = wallUp && wallRight;
+            bool bottomLeftCorner = wallDown && wallLeft;
+            bool bottomRightCorner = wallDown && wallRight;
 
-    return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
-}
+            return topLeftCorner || topRightCorner || bottomLeftCorner || bottomRightCorner;
+        }
 4.
 <img width="313" height="256" alt="Мени" src="https://github.com/user-attachments/assets/2ed62d2c-0897-42fa-8887-6854093fa7b6" /> 
 <img width="504" height="342" alt="Инструкции" src="https://github.com/user-attachments/assets/153f9b07-c91b-4ea4-bdf4-c43c015027e1" />  <img width="620" height="718" alt="Ниво 1" src="https://github.com/user-attachments/assets/8bca2dd7-3c3d-4474-8e98-b5bb9ba81ee2" /> <img width="623" height="720" alt="Ниво 2" src="https://github.com/user-attachments/assets/84e22bfa-25fe-4333-a780-862e4e2b1bc5" /> 
