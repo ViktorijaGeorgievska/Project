@@ -110,22 +110,19 @@ namespace Project
             int nextX = Player.PlayerPosition.X + dx;
             int nextY = Player.PlayerPosition.Y + dy;
 
-            if (!Board.IsInside(nextX, nextY) || Board.IsWall(nextX, nextY))
-                return;
+            if (!Board.IsInside(nextX, nextY) || Board.IsWall(nextX, nextY)) return;
 
             if (Box.BoxPosition.X == nextX && Box.BoxPosition.Y == nextY)
             {
                 int boxNextX = Box.BoxPosition.X + dx;
                 int boxNextY = Box.BoxPosition.Y + dy;
 
-                if (!Board.IsInside(boxNextX, boxNextY) || Board.IsWall(boxNextX, boxNextY))
-                    return;
+                if (!Board.IsInside(boxNextX, boxNextY) || Board.IsWall(boxNextX, boxNextY)) return;
 
                 Box.Move(dx, dy);
             }
 
             Player.Move(dx, dy);
-
             StepCount++;
 
             if (Box.BoxPosition == Goal.GoalPosition)

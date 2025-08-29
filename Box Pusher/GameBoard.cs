@@ -8,7 +8,7 @@ namespace Project
 {
     public class GameBoard
     {
-        public int[,] Map { get; }
+        public int[,] Map { get; set; }
         public int Rows => Map.GetLength(0);  
         public int Cols => Map.GetLength(1);  
 

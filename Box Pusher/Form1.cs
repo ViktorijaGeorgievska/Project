@@ -43,14 +43,12 @@ namespace Project
 
             int formWidth = game.Board.Cols * tileSize + 20;  
             int formHeight = game.Board.Rows * tileSize + 70; 
-
             this.ClientSize = new Size(formWidth, formHeight);
 
             InitializeBoardVisual();
             UpdateInfoLabel();
             UpdateBoardVisual();
             this.Invalidate();
-
             this.KeyDown += Form1_KeyDown;
         }
 

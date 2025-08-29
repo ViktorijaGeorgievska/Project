@@ -9,10 +9,10 @@ namespace Project
 {
     public class Level
     {
-        public int[,] Map { get; }
-        public Point PlayerStart { get; }
-        public Point BoxStart { get; }
-        public Point Goal { get; }
+        public int[,] Map { get; set; }
+        public Point PlayerStart { get; set; }
+        public Point BoxStart { get; set; }
+        public Point Goal { get; set; }
 
         public Level(int[,] map, Point playerStart, Point boxStart, Point goal)
         {
