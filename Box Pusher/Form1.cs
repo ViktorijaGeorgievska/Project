@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -28,7 +28,7 @@ namespace Project
             this.KeyPreview = true;
             this.Width = 400;
             this.Height = 300;
-            
+
             game = new Game();
 
             lblInfo = new Label();
@@ -174,11 +174,8 @@ namespace Project
 
         private void BtnMenu_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show(
-                "Дали сакаш да се вратиш во менито?\nТековната игра нема да се зачува.",
-                "",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Дали сакаш да се вратиш во менито?\nТековната игра нема да се зачува.","", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {

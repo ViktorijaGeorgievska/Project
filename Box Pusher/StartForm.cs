@@ -24,7 +24,7 @@ namespace Project
             gameForm.StartPosition = FormStartPosition.CenterScreen;
             gameForm.FormClosed += (s, args) => Application.Exit();
             gameForm.Show();
-            this.Hide();       
+            this.Hide();
         }
 
         private void btnInstructions_Click(object sender, EventArgs e)
