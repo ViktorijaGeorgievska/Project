@@ -139,7 +139,7 @@ namespace Project
             if (IsBoxStuck())
             {
                 await Task.Delay(100);
-                if (MessageBox.Show($"❌ Кутијата е заглавена! Чекори: {StepCount}", "Game Over", MessageBoxButtons.OK) == DialogResult.OK)
+                if (MessageBox.Show($"❌ Кутијата е заглавена! Чекори: {StepCount}", "Играта заврши", MessageBoxButtons.OK) == DialogResult.OK)
                 {
                     LoadLevel(CurrentLevel);
                 }
